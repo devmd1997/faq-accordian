@@ -1,1 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --color-white: hsl(0, 100%, 100%);
+    --color-purple-100: hsl(275, 100%, 97%);
+    --color-purple-600: hsl(292, 16%, 49%);
+    --color-purple-950: hsl(292, 42%, 14%);
+
+    --font-work-sans: 'Work Sans', sans-serif;
+
+     /* Spacing */
+    --spacing: 8px;
+
+    --radius-sm: 5px;
+    --radius-md: 15px;
+    --radius-lg: 25px;
+
+
+    /* Breakpoints */
+    --breakpoint-sm: 375px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1440px;
+}
+
+@utility title-text {
+    font-family: var(--font-work-sans);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-purple-950);
+}
+
+@utility summary-text {
+    font-family: var(--font-work-sans);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-purple-950);
+}
+
+@utility body-text {
+    font-family: var(--font-work-sans);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-purple-600);
+}
+
+@layer base {
+    body {
+        @apply bg-purple-100 flex flex-col items-center min-h-screen relative px-4 py-16;
+    }
+
+    header {
+        @apply absolute top-0 left-0 -z-10 w-full;
+    }
+
+    main {
+        @apply bg-white flex flex-col p-2 rounded-sm gap-1 w-full max-w-[600px] shadow-xl;
+    }
+
+    details {
+        border-block-end: 1px solid var(--color-purple-100);
+    }
+
+    details:last-of-type {
+        border-block-end: none;
+    }
+
+    details p {
+        @apply body-text pb-4;
+        font-weight: 400;
+    }
+
+    summary {
+        @apply summary-text flex justify-between items-center cursor-pointer py-2 gap-2;
+        list-style: none;
+    }
+
+    summary:hover {
+        color: var(--color-purple-500);
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary::after {
+        content: url('../assets/images/icon-plus.svg');
+        flex-shrink: 0;
+        margin-left: 1rem;
+        padding-left: 16px;
+    }
+
+    details[open] > summary::after {
+        content: url('../assets/images/icon-minus.svg');
+    }
+}
+
+@layer components {
+    .title-container {
+        @apply flex flex-row items-center gap-3 title-text;
+    }
+}
